@@ -1,0 +1,56 @@
+<mat-card>
+
+	<mat-card-title>Select project to track time</mat-card-title>
+
+	<mat-card-content>
+
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>Select project</mat-label>
+				<mat-select [(value)]="projectTime.projectid">
+					<mat-option *ngFor="let project of projects" [value]="project._id">
+						{{project.name}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+		</div>
+
+		<div>
+			<mat-form-field appearance="fill">
+				<mat-label>Select time Scale</mat-label>
+				<mat-select [(value)]="projectTime.timescale" (selectionChange)="setTimeLeft($event.value)">
+					<mat-option *ngFor="let timescale of timescales" [value]="timescale.value">
+						{{timescale.viewValue}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+		</div>
+
+		<div>
+			<mat-slider 
+        thumbLabel tickInterval="1" min="1" max="60" 
+        (input)="onSlide($event)"> <!--(input)="onSlide($event)" [(ngModel)]="projectTime.time" > -->
+			</mat-slider>
+		</div>
+
+		<div class="button-row">
+			<button mat-raised-button color="primary" (click)='startTimer()'>Start Timer</button>
+			<button mat-raised-button color="accent" (click)='pauseTimer()'>Pause</button>
+
+      <p>{{projectTime.time}} {{getTimeScale(projectTime.timescale)}} selected</p>
+			<p>{{projectTime.timeLeft}} Seconds Left ...</p>
+		  <p>{{projectTime.timeElapsed}} Seconds Elapsed ...</p>
+    </div>
+	</mat-card-content>
+
+</mat-card>
+
+
+
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
