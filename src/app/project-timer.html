@@ -1,12 +1,12 @@
 <mat-card>
 
-	<mat-card-title>Select project to track time</mat-card-title>
+	<mat-card-title>Select activity to track time</mat-card-title>
 
 	<mat-card-content>
 
 		<div>
 			<mat-form-field appearance="fill">
-				<mat-label>Select project</mat-label>
+				<mat-label>Select project or activity</mat-label>
 				<mat-select [(value)]="projectTime.projectid">
 					<mat-option *ngFor="let project of projects" [value]="project._id">
 						{{project.name}}
